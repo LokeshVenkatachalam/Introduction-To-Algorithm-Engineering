@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2020111017.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-3">Assignment 3</h1>
+<h2 id="q1">Q1)</h2>
+<h3 id="jen-schmidt-algorithm-for-ear-decomposition">Jen-Schmidt Algorithm for Ear Decomposition</h3>
+<ol>
+<li>Find a rooted DFS tree.</li>
+<li>Give DFS number to each vertex.</li>
+<li>Direct Edges in the DFS tree towards the <code>root</code> vertex</li>
+<li>Direct Non Tree edges away from the <code>root</code> vertex.</li>
+<li>Have {visited, not-visted} flag for each vertex.</li>
+<li>Take the Non tree edge with minimum DFS number<code>(min(dfsnum(u), dfsnum(v)))</code></li>
+<li>Trace the simple cycle traced by that edge and mark all vertices in the cycle as <code>visited</code></li>
+<li>All edges in this cycle belong to a EAR component</li>
+<li>Loop:</li>
+</ol>
+<ul>
+<li>i. Take the Non tree edge with minimum DFS number<code>(min(dfsnum(u), dfsnum(v)))</code></li>
+<li>ii. Trace the simple cycle traced by that edge until we reach a vertex that is visted.</li>
+<li>iii. Mark all vertices in the cycle as <code>visited</code></li>
+<li>Iv. All edges traversed till finding the visited vertex belong to a EAR component</li>
+</ul>
+<h3 id="our-question">Our Question</h3>
+<ul>
+<li>
+<p>We are asked used a Non-DFS tree instead of DFS tree.</p>
+</li>
+<li>
+<p>One direct observation is in a Non DFS tree there might be <code>cross edges</code>, where as in DFS tree only <code>back edges</code> exist.[graph is un-directional]</p>
+</li>
+<li>
+<p>So what essentially happens assume there is <code>cross edge</code>,then it will form a cycle with LCA of the two vertices, which need not be one of <code>u</code>,<code>v</code>.</p>
+</li>
+<li>
+<p>The problem is when X-&gt;(lca(u,v)) is not one of <code>u</code>,<code>v</code>.</p>
+</li>
+<li>
+<p>In which case path to both <code>u</code> and <code>v</code> from <code>X</code> will contain only edges going towards the root,only edge <code>(u,v)</code> away from the root.</p>
+</li>
+<li>
+<p>In which case, simple cycle does(need) not exist for all these nodes in the path so edge <code>(u,v)</code> has possibilty of not ending up in any ear.</p>
+</li>
+<li>
+<p>We can see from this directed graph for jen algorithm below(which the directed graph with BFS tree rooted at 1), that there is simple cycle induced by non tree edge <code>(3,5)</code></p>
+</li>
+<li>
+<p>So Any spanning tree will not work , DFS trees works becuase there are no cross edges, cross edges as non tree edges need not induce a simple cycle , when directions are given according to our algorithm.</p>
+</li>
+<li>
+<p>Back edges dont cause these problem</p>
+</li>
+<li>
+<p>Graph:</p>
+</li>
+</ul>
+<p><img src="./g1.png" alt="Graph"></p>
+<ul>
+<li>BFS tree:</li>
+</ul>
+<p><img src="./t1.png" alt="BFS tree"></p>
+<ul>
+<li>Directed graph for jen schmidt</li>
+</ul>
+<p><img src="./Q!.png" alt="Graph"></p>
+<h2 id="question-2">Question 2</h2>
+<p><img src="./graph_1.png" alt="Graph"></p>
+<h3 id="jen-schmidt-algorithm">Jen schmidt algorithm</h3>
+<ul>
+<li>Non tree edges:</li>
+</ul>
+<p>edge(u,v) -&gt; DFS number</p>
+<ol>
+<li>(1,5) -&gt; 1</li>
+<li>(1,4) -&gt; 1</li>
+<li>(2,4) -&gt; 2</li>
+<li>(2,6) -&gt; 2</li>
+<li>(2,8) -&gt; 2</li>
+<li>(3,8) -&gt; 3</li>
+<li>(7,6) -&gt; 4</li>
+<li>(8,4) -&gt; 5</li>
+<li>(6,3) -&gt; 6</li>
+</ol>
+<ul>
+<li>Now the Ear each non tree edge induces:</li>
+</ul>
+<ol>
+<li>(1,5) -&gt; [(1,5),(5,4),(4,6),(6,8),(8,7),(7,3),(3,2),(2,1)] , vis = [1,2,3,4,5,6,7,8]</li>
+<li>(1,4) -&gt; [(1,4)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(2,4) -&gt; [(2,4)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(2,6) -&gt; [(2,6)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(2,8) -&gt; [(2,8)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(3,8) -&gt; [(3,8)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(7,6) -&gt; [(7,6)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(8,4) -&gt; [(8,4)],    vis = [1,2,3,4,5,6,7,8]</li>
+<li>(6,3) -&gt; [(6,3)],    vis = [1,2,3,4,5,6,7,8]</li>
+</ol>
+<p><img src="./Jen.jpg" alt="Graph"></p>
+<h3 id="ramachandran-algorithm">Ramachandran algorithm</h3>
+<ul>
+<li>Tree rooted at vertex 1</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">vertex</th>
+<th style="text-align:center">Preoder number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">7</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Non tree edges:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">index</th>
+<th style="text-align:center">edge(u,v)</th>
+<th style="text-align:center">LCA</th>
+<th style="text-align:center">Preder Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.</td>
+<td style="text-align:center">(1,4)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2.</td>
+<td style="text-align:center">(4,2)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">3.</td>
+<td style="text-align:center">(6,2)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">4.</td>
+<td style="text-align:center">(4,6)</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">5.</td>
+<td style="text-align:center">(4,8)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">6.</td>
+<td style="text-align:center">(3,8)</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">7.</td>
+<td style="text-align:center">(6,8)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">8.</td>
+<td style="text-align:center">(7,8)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">9.</td>
+<td style="text-align:center">(7,3)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Sort non tree edges by their preorder number LCA</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Sort Number</th>
+<th style="text-align:center">edge(u,v)</th>
+<th style="text-align:center">LCA</th>
+<th style="text-align:center">Preder Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.</td>
+<td style="text-align:center">(1,4)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2.</td>
+<td style="text-align:center">(4,2)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">3.</td>
+<td style="text-align:center">(6,2)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">4.</td>
+<td style="text-align:center">(6,8)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">5.</td>
+<td style="text-align:center">(7,8)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">6.</td>
+<td style="text-align:center">(7,3)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">7.</td>
+<td style="text-align:center">(4,8)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">8.</td>
+<td style="text-align:center">(4,6)</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">9.</td>
+<td style="text-align:center">(3,8)</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Labeling Tree edges:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Index</th>
+<th style="text-align:center">edge(u,v)</th>
+<th style="text-align:center">lables of cycle in which present</th>
+<th style="text-align:center">label of edge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.</td>
+<td style="text-align:center">(1,2)</td>
+<td style="text-align:center">2,3,4,5,6,7</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">2.</td>
+<td style="text-align:center">(1,5)</td>
+<td style="text-align:center">1,2,3,4,5,6,7</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">3.</td>
+<td style="text-align:center">(5,4)</td>
+<td style="text-align:center">1,2,7,8</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">4.</td>
+<td style="text-align:center">(5,6)</td>
+<td style="text-align:center">3,4,5,6,8</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">5.</td>
+<td style="text-align:center">(6,7)</td>
+<td style="text-align:center">5,6</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">6.</td>
+<td style="text-align:center">(2,8)</td>
+<td style="text-align:center">4,5,7,9</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">7.</td>
+<td style="text-align:center">(2,3)</td>
+<td style="text-align:center">6,9</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Final Ear decomisition:</p>
+<ul>
+<li>Label 1: [(1,4),(1,5),(5,4)]</li>
+<li>Label 2: [(4,2),(1,2)]</li>
+<li>Label 3: [(6,2),(5,6)]</li>
+<li>Label 4: [(6,8),(2,8)]</li>
+<li>Label 5: [(7,8),(6,7)]</li>
+<li>Label 6: [(7,3),(2,3)]</li>
+<li>Label 7: [(4,8)]</li>
+<li>Label 8: [(4,6)]</li>
+<li>Label 9: [(3,8)]</li>
+</ul>
+</li>
+<li>
+<p>We can move intial non tree edge to Label 0(here the above in itself ear decompsed):</p>
+<ul>
+<li>Label 0  [(1,4)]</li>
+<li>Label 1: [(1,5),(5,4)]</li>
+<li>Label 2: [(4,2),(1,2)]</li>
+<li>Label 3: [(6,2),(5,6)]</li>
+<li>Label 4: [(6,8),(2,8)]</li>
+<li>Label 5: [(7,8),(6,7)]</li>
+<li>Label 6: [(7,3),(2,3)]</li>
+<li>Label 7: [(4,8)]</li>
+<li>Label 8: [(4,6)]</li>
+<li>Label 9: [(3,8)]</li>
+</ul>
+</li>
+</ul>
+<p><img src="./Ramachandran.jpg" alt="Graph"></p>
+<h2 id="question-3">Question 3</h2>
+<h3 id="algorithm">Algorithm</h3>
+<ul>
+<li>We have seen in class that if we multiply Adjacency matrix with itself it gives no of paths of length <code>2</code> between(i,j).</li>
+<li>Now for it form a triangle there should path on length <code>1</code> ans <code>2</code> between given vertices <code>(i,j)</code></li>
+<li>And we also known that AxA [i,j] gives no of paths of length 2 between <code>(i,j)</code></li>
+<li>So total number of triangles = sum of all{ (AxA[i,j] * A[i,j])}/3</li>
+<li>division by 3 comes becuase of each edge in traingle will given one value to the sum.</li>
+<li>Pseudo Code:</li>
+</ul>
+<ol>
+<li>Sum ← 0</li>
+<li>compute A2</li>
+<li>for i = 1 . . . n do</li>
+<li>for j = 1 . . . n do</li>
+<li>Sum ← Sum + A[i,j] · (A*A) [i,j]</li>
+<li>return Sum/3</li>
+</ol>
+<h3 id="timecomplexity">Timecomplexity</h3>
+<ul>
+<li>Basically finally triangle couting after matrix multplication cause <code>O(N^2)</code></li>
+<li>Matrix Multuplication - fastest known is <code>O(N^2.37)</code></li>
+<li>So overall time complexity is - <code>O(N^2)+O(N^2.37)</code> = <code>O(N^2.37)</code></li>
+</ul>
+
+</body>
+</html>
