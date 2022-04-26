@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>27-03-2022.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="biconnected-components">Biconnected Components</h1>
+<h2 id="definitions">Definitions</h2>
+<h3 id="k-connectivity-k-vertex-connectivity">K-Connectivity [K-vertex connectivity]</h3>
+<ul>
+<li>Given a Graph G = (V,E) , if K is smallest size of subset of vertices to be deleted so that the graph becomes into more than 1 component , then graph G is K-connected</li>
+</ul>
+<h3 id="k-edge-connectivity">K-edge connectivity</h3>
+<ul>
+<li>Given a Graph G = (V,E) , if K is smallest size of subset of edges to be deleted so that the graph becomes into more than 1 component , then graph G is K-edge connected</li>
+</ul>
+<h3 id="notes-on-k-connectivity-k-edge-connectivity">Notes on K-connectivity K-edge connectivity</h3>
+<ul>
+<li>If Graph G is K-connected , then it is also K-edge connected</li>
+<li>If Graph G is K-edge connected , it is not necessary to be K-connected</li>
+<li>Example:</li>
+</ul>
+<pre class="hljs"><code><div>         _
+     _ /_/
+    /_/
+</div></code></pre>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="articulation-points">Articulation points</h3>
+<ul>
+<li>Given a Graph G = (V,E) , a vertex <code>u</code> is called articulation point if removing u makes the the graph(componenet) into more than 1 component</li>
+<li>Articulation points are important in finding Bridges</li>
+</ul>
+<h3 id="bridges">Bridges</h3>
+<ul>
+<li>Given a Graph G = (V,E) , a bridge is a edge that connects two vertices of G and when deleted makes the graph into more than 1 component [disconnects the graph]</li>
+</ul>
+<h3 id="back-edge">Back edge</h3>
+<ul>
+<li>It is an edge (u, v) such that v is ancestor of node u but not part of DFS tree. Edge from 6 to 2 is a back edge.</li>
+</ul>
+<h2 id="finding-articulation-points-tarjans-algorithm">Finding articulation Points [Tarjan's Algorithm]</h2>
+<ol>
+<li>Obtain a rooted DFS tree (T) of the graph G rooted at vertex <code>R</code></li>
+<li>While doing DFS compute the discovery time(and if wanted finishing times also) of each vertex</li>
+</ol>
+<h3 id="caseroot-r">Case:Root R</h3>
+<ul>
+<li>If <code>R</code> has more than 1 children Then <code>R</code> is a articulation point</li>
+</ul>
+<h3 id="casenon---root-vertex">Case:Non - Root vertex</h3>
+<ul>
+<li>For each non root vertex <code>v</code> find the <code>low(v)</code></li>
+</ul>
+<h4 id="lowv"><code>low(v):</code></h4>
+<ol>
+<li><code>low(v) = d(v)</code></li>
+<li><code>low(v) = min(low(v),(low(w))</code> for all <code>w</code> which a child of <code>v</code></li>
+<li><code>low(v) = min(low(v),(low(x))</code> for all <code>x</code> where there exists a backedge from <code>v</code> to <code>x</code></li>
+</ol>
+<h4 id="articulation-point-condition">Articulation point condition:</h4>
+<ol>
+<li>for a given root vertex <code>v</code> if one of children's <code>low(w)</code> is greater than  or equal to <code>d(v)</code> then <code>v</code> is an articulation point</li>
+<li>Condition: <code>d(v)&lt;=low(w)</code> for atleast one child <code>w</code> than <code>v</code> is a articulation point,</li>
+<li>In other words <code>d(v)&lt;= max(low(w))</code> then <code>v</code> is a articulation point.</li>
+</ol>
+<h4 id="how-to-compute-this">How to compute this:</h4>
+<ol>
+<li>First do a DFS find the rooted tree with its discovery times</li>
+<li>Bottom up do the <code>low(v)</code> calculation</li>
+<li>Now for each node check the articulation point condition.</li>
+</ol>
+<h3 id="finding-bridges-from-this">Finding Bridges from this:</h3>
+<ol>
+<li>Bridges have at least one end-point as an articulation point.</li>
+<li>For a edge vw(v-&gt;parent,w-&gt;child)
+=&gt; If <code>d(v)&lt;low(w)</code> then <code>vw</code> is a bridge</li>
+</ol>
+<h3 id="finding-connected-components">finding connected components</h3>
+<ul>
+<li>Lets take a <code>u</code>,<code>v</code>,<code>w</code> ,such that <code>u</code> is the child of <code>v</code> and <code>v</code> is child of <code>w</code></li>
+<li>if <code>v</code> is articulation point due to <code>u</code> , thwn <code>uv</code> and <code>vw</code> belong to different components</li>
+<li>Else both belong to same biconnected components</li>
+</ul>
+<hr>
+<h2 id="tarjan-vishkin-algorithm">Tarjan-Vishkin Algorithm</h2>
+<ol>
+<li>Take a spanning tree <code>T</code> of graph <code>G</code></li>
+<li>Find the preorder number of vertics in <code>T</code></li>
+<li>Create an auxiliary graph <code>G’</code> where <code>G’</code> contains one vertex for each edge of <code>G</code></li>
+<li>Add edges to <code>G'</code> using the cases below</li>
+<li>Now find connected components of <code>G'</code> using the algorithm discussed in the previous section</li>
+<li>Now a component of <code>G'</code> is a biconnected component of <code>G</code></li>
+</ol>
+<h3 id="finding-edges-in-g">Finding edges in <code>G'</code></h3>
+<ol>
+<li>Case a: Add a Edge connecting <code>uw</code> to <code>vw</code> in G’ whenever there is a tree edge <code>w-&gt;u</code> with <code>u</code> as the parent of <code>w</code> and a nontree edge <code>vw</code> with <code>pre(v) &lt; pre(w)</code></li>
+<li>Case b: Add a Edge connecting <code>uv</code> to <code>xw</code> in G’ whenever there is a tree edge <code>v -&gt; u</code> with u as the parent of <code>v</code> and a tree edge <code>w-&gt;x</code> with x as the parent of w and a nontree edge <code>v</code>w with v and w not having an ancestor-descendant relationship in <code>T</code></li>
+<li>Case c: Add a Edge connecting uv to <code>vw</code> in <code>G'</code> whenever there is a tree edge <code>v-&gt;u</code> with <code>u</code> as the parent of <code>v</code> and a tree edge <code>w-&gt;v</code> with <code>v</code> as the parent of <code>w</code> and a nontree edge joins a descendant of <code>w</code> to a non-descendant of <code>v</code> in <code>T</code></li>
+</ol>
+<hr>
+<h2 id="cong-and-bader-preprocessing-addition-to-tarjan-vishkin-algorithm">Cong and Bader Preprocessing Addition to Tarjan-Vishkin Algorithm</h2>
+<ul>
+<li>
+<p>We identify edges of <code>G</code> the removal of which does
+not affect the biconnected components of <code>G</code></p>
+</li>
+<li>
+<p>Let <code>T</code> be a <code>BFS tree</code> of <code>G</code>. Let <code>F</code> be a spanning forest of <code>G \ T</code>. Then, then the edges of <code>G \ (T U F)</code> are not relevant for the biconnectivity of <code>G</code>.</p>
+<ul>
+<li><code>BFS tree</code> - The tree obtained while doing BFS on the graph</li>
+<li><code>spanning forest</code> - The collection of trees obtained while finding spanning tree of a graph (basically the graph is not connected)</li>
+<li><code>G \ T</code> - Edges that are in <code>G</code> but not in <code>T</code></li>
+<li><code>T U F</code> - Edges that are in <code>T</code> or <code>F</code></li>
+<li><code>G \ (T U F)</code> - Edges in <code>G</code> but not in <code>T</code> or <code>F</code>.</li>
+</ul>
+</li>
+<li>
+<p>Let <code>H</code> be a graph obtained after removing edges, then |E(H)| is at most 2n.</p>
+<ul>
+<li><code>E(X)</code> - Edges in <code>X</code></li>
+<li><code>|E(X)|</code> - Number of edges in <code>X</code></li>
+</ul>
+</li>
+<li>
+<p>The property extends to k-connectivity also due to
+the results of <code>Cheriyan and Thurimell</code>.</p>
+</li>
+</ul>
+<h4 id="notes">Notes</h4>
+<ul>
+<li>approach of Cong and Bader is therefore very
+useful for dense graphs</li>
+<li><code>|E(G)|</code> can go down from <code>m</code> to <code>O(n)</code>.</li>
+<li>For sparse graphs, there is not much to gain as m is
+usually very small to begin with.</li>
+<li>The size of <code>E(G')</code> in the Tarjan and Vishkin
+algorithm can be as high as O($n^2$) even when G is
+sparse</li>
+</ul>
+<hr>
+<h2 id="slota-and-madduri-algorithm">Slota and Madduri Algorithm</h2>
+<ol>
+<li>
+<p>Perform a BFS of G.</p>
+</li>
+<li>
+<p>For each tree edge <code>uv</code>, with <code>u = p(v)</code>, remove the edge from <code>G</code> and perform another BFS from <code>v</code>.</p>
+<ul>
+<li><code>p(x)</code> -&gt; Parent on vertex <code>x</code></li>
+</ul>
+</li>
+<li>
+<p>If this BFS on <code>G \{uv}</code> can reach to some vertex that is an ancestor of u, then v is not an articulation point.</p>
+<ul>
+<li><code>A \ B</code> - Set of items in <code>A</code> but not in <code>B</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="finding-whether-it-possible-to-reach-to-some-vertex-that-is-an-ancestor-of-u-when-uv-is-removed-from-g">Finding whether it possible to reach to some vertex that is an ancestor of u ,when <code>uv</code> is removed from <code>G</code></h4>
+<ol>
+<li>
+<p>Consider a BFS tree of <code>G</code> stored along with two other pieces of information: <code>P</code> and <code>L</code></p>
+</li>
+<li>
+<p>Basically we do bfs from each vertex <code>X</code> removing(masking) the edge connecting vertex <code>X</code> and <code>P(X)</code>, if we are able not able to reach a vertex <code>Y</code> with <code>L(Y) &lt; L(X)</code> then <code>P(X)</code> is an articulation point.</p>
+<ul>
+<li><code>P(X)</code> - Parent of <code>X</code></li>
+<li><code>L(X)</code> - Level of <code>X</code></li>
+<li>Alt: Vertex 'Y' is articulation point if for atleast one children <code>w</code> , when masked BFS is done we are not able reach a vertex <code>Z</code> with <code>L(Z) &lt; L(w)</code></li>
+</ul>
+</li>
+<li>
+<p>Different ways of expressing the claim:</p>
+<ul>
+<li>A non-root vertex <code>v</code> in the BFS tree <code>&lt;P, L&gt;</code> is an articulation vertex if and only if it has at least one child <code>w</code> that cannot reach any vertex of depth at least <code>L(v)</code> when <code>v</code> is removed from <code>G</code></li>
+<li>A non-root vertex <code>v</code> in the BFS tree <code>&lt;P, L&gt;</code> is
+not an articulation vertex if and only if all its children <code>w</code> in the BFS tree <code>(P(w) = v)</code> can reach all other vertices in the graph <code>G</code> when <code>v</code> is removed from <code>G</code>
+<ul>
+<li><code>P(w) = v</code> - Parent of <code>w</code> in the BFS tree</li>
+</ul>
+</li>
+<li>If a traversal from any $u_i ∈ V$,$(P(u_i) = v)$ is not able to reach all other $u_j ∈ G$ $(P(u_j ) = v)$ when <code>v</code> is removed from the graph, then <code>v</code> is an articulation point</li>
+</ul>
+</li>
+<li>
+<p>if the only path in G between $u_i$ and $u_j$ requires <code>v</code>, then $u_i$ and $u_j$ are in separate biconnected components with <code>v</code> as an articulation point. We term <code>v</code> as the parent articulation vertex</p>
+</li>
+</ol>
+<h4 id="handling-root">Handling Root:</h4>
+<ul>
+<li>One way is doing BFS rooted at a different vertex</li>
+</ul>
+<h4 id="notes">Notes:</h4>
+<ul>
+<li>+ve : Each BFS can be done in parallel without any
+dependencies on the other BFS.</li>
+<li>–ve : The downside is that one has to n additional BFS computations.</li>
+<li>Surprisingly, works better than the Cong and Bader approach as in principle, Tarjan and Vishkin algorithm is slow in practice.</li>
+</ul>
+<h2 id="chaitanya-and-kothapalli">Chaitanya and Kothapalli</h2>
+<h3 id="observations">Observations:</h3>
+<ol>
+<li>We notice that in a 2-edge-connected component articulation points are necessarily vertices that are the least common ancestor of some nontree edge according to any spanning tree</li>
+</ol>
+<h3 id="algorithm">Algorithm</h3>
+<ol>
+<li>We Separate Vertex into <code>Potential articulation points</code> and <code>Non-articulation points</code> by using observation-1
+<ul>
+<li><code>Potential articulation points:</code> - Vertices that are the least common ancestor of some nontree edge</li>
+<li><code>Non-articulation points:</code> - Vertices that are not the least common ancestor of any nontree edge</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Now two approaches Possible:</li>
+</ul>
+<ol start="2">
+<li>
+<p>Approach 1: Check articulation point status only for vertices in<code>potential articilulation points</code> set while doing <code>Slota and Madduri</code></p>
+</li>
+<li>
+<p>Approach 2:</p>
+<ol>
+<li>
+<p>Find the Bridges and remove the bridges ,so we have components which are two edge connected.</p>
+</li>
+<li>
+<p>We transform each two edged connected component ($G_i$) into a new graph using a novel way ($G_i'$)</p>
+</li>
+<li>
+<p><code>Case Root:</code> Vertex <code>r</code> is an articulation point in <code>G</code> if only if (iff) <code>r</code> is the LCA of more than one non-tree edge of $G_i'$ according to a BFS in $G_i'$ from <code>r</code>, and <code>r</code> is also an end point of some bridge in $G_i'$</p>
+</li>
+<li>
+<p><code>Case Non Root:</code> For vertices <code>u</code> in $G_i'$ with <code>u ≠ r</code>, <code>u</code> is an articulation point of <code>G</code> iff <code>u</code> is an end point of some bridge <code>uv</code> in $G_i'$ with $u ∈ G$ and $v !∈ G.$</p>
+<ul>
+<li>Note <code>u</code> belongs to <code>G</code></li>
+<li>Note <code>v</code> does not belong to <code>G</code></li>
+</ul>
+</li>
+<li>
+<p>Novel Modification:</p>
+<ol>
+<li>For a non tree edge <code>e</code> , if <code>v</code> is LCA , with fundamental cycle of <code>e</code> passing through <code>vx</code> and <code>vy</code>, then:
+<ul>
+<li>Remove edges <code>vx</code> and <code>vy</code></li>
+<li>Add a vertex <code>v'v</code></li>
+<li>Add an edge <code>v'x</code> ,<code>v'y</code></li>
+<li><code>x</code>,<code>y</code> two children of <code>v</code> in the fundamental cycle of <code>e</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+</body>
+</html>
